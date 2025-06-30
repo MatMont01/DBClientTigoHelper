@@ -18,7 +18,13 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
+# La dependencia de tauri ya no necesita features para esto
 tauri = { version = "2", features = [] }
+
+# --- AÑADIMOS EL PLUGIN OFICIAL ---
+tauri-plugin-shell = "2"
+
+# El resto de tus dependencias se mantienen igual
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

@@ -1,50 +1,42 @@
+// src/utils/tauriHelpers.ts
+
+// --- ¡IMPORTACIÓN CORREGIDA SEGÚN LA DOCUMENTACIÓN! ---
+import {save} from '@tauri-apps/plugin-dialog';
 import {invoke} from '@tauri-apps/api/core';
-import type {AutomationTaskPreview, AutomationTaskParams} from '../types/TaskTypes';
+import type {AutomationTaskParams, AutomationTaskPreview} from '../types/TaskTypes';
 
 /**
- * Llama una tarea de automatización al backend Python a través de Tauri.
- * @param taskKey Nombre de la tarea (ej: 'clients_by_node')
- * @param params  Parámetros requeridos por la tarea (se pasan como JSON)
- * @returns      Preview del resultado (array de objetos), o lanza error
+ * Abre el diálogo nativo del sistema para guardar un archivo.
+ * @param defaultPath - Una ruta y nombre de archivo sugerido.
+ * @returns Una promesa que se resuelve con la ruta seleccionada o null si el usuario cancela.
  */
-export async function runAutomationTask(
-    taskKey: string,
-    params: AutomationTaskParams
-): Promise<AutomationTaskPreview> {
-    try {
-        const result = await invoke<string>('run_automation_task', {
-            taskName: taskKey,
-            paramsJson: JSON.stringify(params)
-        });
-        return JSON.parse(result);
-    } catch (error) {
-        console.error("Error calling automation task:", error);
-        throw error;
+export async function openSaveDialog(defaultPath?: string): Promise<string | null> {
+    // --- USAMOS LA FUNCIÓN 'save' DIRECTAMENTE ---
+    const result = await save({
+        title: 'Guardar Reporte Como',
+        defaultPath,
+        filters: [{
+            name: 'Excel Files',
+            extensions: ['xlsx']
+        }]
+    });
+
+    // La lógica de abajo se mantiene igual, ya es correcta.
+    if (Array.isArray(result) || result === null) {
+        return null;
     }
+    return result;
 }
 
 /**
- * Exporta un Excel usando el backend y obtiene el nombre del archivo generado.
+ * Invoca el comando del backend de Tauri para ejecutar una tarea de automatización.
+ * @param taskName - El identificador de la tarea.
+ * @param params - Los parámetros para la tarea, incluyendo la ruta de salida.
+ * @returns Una promesa que se resuelve con el resultado de la tarea.
  */
-export async function exportAutomationTask(
-    taskKey: string,
-    params: AutomationTaskParams
-): Promise<string> {
-    try {
-        // El backend ahora devuelve un string plano, SIN comillas
-        const filename = await invoke<string>('run_automation_task', {
-            taskName: taskKey,
-            paramsJson: JSON.stringify({...params, mode: 'export'})
-        });
-
-        if (!filename) {
-            throw new Error("No se recibió el nombre del archivo exportado.");
-        }
-
-        // Asegúrate de limpiar posibles saltos de línea o comillas accidentales
-        return filename.trim().replace(/^"|"$/g, "");
-    } catch (error) {
-        console.error("Error exporting automation task:", error);
-        throw error;
-    }
+export async function runAutomationTask(taskName: string, params: AutomationTaskParams): Promise<AutomationTaskPreview> {
+    return await invoke('run_automation_task', {
+        taskName,
+        ...params
+    });
 }

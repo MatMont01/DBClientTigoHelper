@@ -1,47 +1,64 @@
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
+// src-tauri/src/main.rs
+
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::{AppHandle, command, Manager};
-use tauri::path::BaseDirectory;
+use tauri_plugin_shell::{process::CommandEvent, ShellExt};
 
-#[command]
-fn run_automation_task(app: AppHandle, task_name: String, params_json: String) -> Result<String, String> {
-    let script_path = app
-        .path()
-        .resolve("python/task_runner.py", BaseDirectory::Resource)
-        .map_err(|e| format!("Error resolviendo ruta del script: {e}"))?;
+async fn run_python_command(app: tauri::AppHandle, args: Vec<&str>) -> Result<String, String> {
+    let (mut rx, _child) = app.shell()
+        .command("python")
+        .arg("python/main.py")
+        .args(args)
+        .spawn()
+        .map_err(|e| e.to_string())?;
 
-    let mut cmd = std::process::Command::new("python");
-    cmd.arg(script_path)
-        .arg(task_name)
-        .arg(params_json);
+    let mut stdout_buffer = String::new();
+    let mut stderr_buffer = String::new();
 
-    // SOLO EN WINDOWS: Ocultar la consola de Python
-    #[cfg(target_os = "windows")]
-    {
-        use std::os::windows::process::CommandExt;
-        cmd.creation_flags(0x08000000); // CREATE_NO_WINDOW
+    while let Some(event) = rx.recv().await {
+        match event {
+            CommandEvent::Stdout(bytes) => {
+                let line = String::from_utf8_lossy(&bytes);
+                print!("PY_STDOUT: {}", line);
+                stdout_buffer.push_str(&line);
+            }
+            CommandEvent::Stderr(bytes) => {
+                let line = String::from_utf8_lossy(&bytes);
+                eprint!("PY_STDERR: {}", line);
+                stderr_buffer.push_str(&line);
+            }
+            CommandEvent::Terminated(payload) => {
+                if payload.code != Some(0) {
+                    return Err(format!("El script de Python falló con código {:?}. Detalles:\n{}", payload.code, stderr_buffer));
+                }
+            }
+            _ => (),
+        }
     }
 
-    let output = cmd
-        .output()
-        .map_err(|e| format!("Failed to run Python script: {:?}", e))?;
-
-    if !output.status.success() {
-        return Err(format!(
-            "Python error: {}",
-            String::from_utf8_lossy(&output.stderr)
-        ));
+    if stdout_buffer.is_empty() && !stderr_buffer.is_empty() {
+        return Err(stderr_buffer);
     }
 
-    Ok(String::from_utf8_lossy(&output.stdout).to_string())
+    Ok(stdout_buffer)
+}
+
+#[tauri::command]
+async fn preview_task(app: tauri::AppHandle) -> Result<String, String> {
+    run_python_command(app, vec!["--mode", "preview"]).await
+}
+
+#[tauri::command]
+async fn export_task(app: tauri::AppHandle, output_path: String) -> Result<String, String> {
+    run_python_command(app, vec!["--mode", "export", "--output-path", &output_path]).await
 }
 
 fn main() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_shell::init())
+        // --- ¡ESTA ES LA LÍNEA QUE FALTABA! ---
         .plugin(tauri_plugin_dialog::init())
-        .invoke_handler(tauri::generate_handler![run_automation_task])
+        .invoke_handler(tauri::generate_handler![preview_task, export_task])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

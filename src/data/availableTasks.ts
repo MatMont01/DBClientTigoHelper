@@ -1,13 +1,14 @@
 // src/data/availableTasks.ts
-import type { AutomationTaskList } from "../types/TaskTypes";
-import nodeIcon from "../assets/Tigo_Milicom.jpg";
 
-export const AVAILABLE_TASKS: AutomationTaskList = [
-  {
-    key: "clients_by_node",
-    displayName: "Clientes afectados por nodo",
-    description: "Identifica y exporta los clientes afectados por trabajos programados en nodos según cronograma.",
-    image: nodeIcon,
-  },
-  // Agrega futuras tareas aquí...
+// Solo importamos el tipo que necesitamos
+import type {AutomationTask} from "../types/TaskTypes";
+
+// Definimos explícitamente que la lista es un array de AutomationTask
+export const AVAILABLE_TASKS: AutomationTask[] = [
+    {
+        key: "clientes_afectados_por_nodo",
+        displayName: "Clientes Afectados por Nodo",
+        description: "Identifica y exporta los clientes con IP Pública afectados por trabajos programados en nodos, según el cronograma."
+    },
+    // Aquí puedes añadir más tareas en el futuro
 ];
