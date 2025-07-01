@@ -5,16 +5,18 @@ block_cipher = None
 
 a = Analysis(
     ['main.py'],
-    pathex=['.'],
+    pathex=[],
     binaries=[],
-    datas=[('app', 'app')],  # <-- Añade esta línea
+    datas=[
+        ('app', 'app') # Solo necesitamos empaquetar nuestra carpeta 'app'
+    ],
     hiddenimports=[
         'sqlalchemy',
-        'sqlalchemy.dialects.mssql',
         'pandas',
-        'pyodbc',
         'openpyxl',
+        'sqlalchemy_pytds',
         'pandas._libs.tslibs.base'
+        # Ya no necesitamos pyodbc, sqlalchemy.dialects.mssql, ni la carpeta driver.
     ],
     hookspath=[],
     hooksconfig={},
@@ -44,7 +46,7 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
-# Al final del archivo python_backend.spec
+
 coll = COLLECT(
     exe,
     a.binaries,

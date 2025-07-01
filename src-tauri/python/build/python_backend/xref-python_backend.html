@@ -168,7 +168,6 @@ imports:
  &#8226;   <a href="#pyi_rth_multiprocessing.py">pyi_rth_multiprocessing.py</a>
  &#8226;   <a href="#pyi_rth_pkgutil.py">pyi_rth_pkgutil.py</a>
  &#8226;   <a href="#pyi_rth_setuptools.py">pyi_rth_setuptools.py</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#re._casefix">re._casefix</a>
  &#8226;   <a href="#re._compiler">re._compiler</a>
@@ -176,7 +175,7 @@ imports:
  &#8226;   <a href="#re._parser">re._parser</a>
  &#8226;   <a href="#reprlib">reprlib</a>
  &#8226;   <a href="#sqlalchemy">sqlalchemy</a>
- &#8226;   <a href="#sqlalchemy.dialects.mssql">sqlalchemy.dialects.mssql</a>
+ &#8226;   <a href="#sqlalchemy_pytds">sqlalchemy_pytds</a>
  &#8226;   <a href="#sre_compile">sre_compile</a>
  &#8226;   <a href="#sre_constants">sre_constants</a>
  &#8226;   <a href="#sre_parse">sre_parse</a>
@@ -410,6 +409,9 @@ imported by:
  &#8226;   <a href="#pandas.util._exceptions">pandas.util._exceptions</a>
  &#8226;   <a href="#pandas.util._validators">pandas.util._validators</a>
  &#8226;   <a href="#pandas.util.version">pandas.util.version</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
  &#8226;   <a href="#pytz.lazy">pytz.lazy</a>
  &#8226;   <a href="#selectors">selectors</a>
  &#8226;   <a href="#setuptools">setuptools</a>
@@ -882,6 +884,18 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="OpenSSL"></a>
+  <a target="code" href="" type="text/plain"><tt>OpenSSL</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="PIL"></a>
   <a target="code" href="" type="text/plain"><tt>PIL</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
@@ -1198,7 +1212,21 @@ imported by:
  &#8226;   <a href="#pandas.util._validators">pandas.util._validators</a>
  &#8226;   <a href="#pandas.util.version">pandas.util.version</a>
  &#8226;   <a href="#pydoc">pydoc</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
  &#8226;   <a href="#setuptools">setuptools</a>
  &#8226;   <a href="#setuptools._core_metadata">setuptools._core_metadata</a>
  &#8226;   <a href="#setuptools._distutils._modified">setuptools._distutils._modified</a>
@@ -1489,7 +1517,6 @@ imported by:
   <tt>_blake2</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
     <a href="#hashlib">hashlib</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
 
   </div>
 
@@ -1747,7 +1774,6 @@ imports:
   <div class="import">
 imported by:
     <a href="#datetime">datetime</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
 
   </div>
 
@@ -1758,7 +1784,6 @@ imported by:
   <tt>_decimal</tt> <span class="moduletype"><tt>C:\Users\eroni\AppData\Local\Programs\Python\Python313\DLLs\_decimal.pyd</tt></span>  <div class="import">
 imported by:
     <a href="#decimal">decimal</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
 
   </div>
 
@@ -1877,7 +1902,6 @@ imported by:
 imported by:
     <a href="#hashlib">hashlib</a>
  &#8226;   <a href="#hmac">hmac</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
 
   </div>
 
@@ -1961,7 +1985,6 @@ imported by:
   <tt>_locale</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
     <a href="#locale">locale</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
 
   </div>
 
@@ -3369,9 +3392,11 @@ imported by:
 imports:
     <a href="#app.models">app.models</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pytds">pytds</a>
  &#8226;   <a href="#sqlalchemy">sqlalchemy</a>
  &#8226;   <a href="#sqlalchemy.ext.declarative">sqlalchemy.ext.declarative</a>
  &#8226;   <a href="#sqlalchemy.orm">sqlalchemy.orm</a>
+ &#8226;   <a href="#sys">sys</a>
 
   </div>
   <div class="import">
@@ -4562,6 +4587,7 @@ imported by:
  &#8226;   <a href="#email.encoders">email.encoders</a>
  &#8226;   <a href="#encodings.base64_codec">encodings.base64_codec</a>
  &#8226;   <a href="#http.server">http.server</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
  &#8226;   <a href="#secrets">secrets</a>
  &#8226;   <a href="#setuptools._vendor.wheel.util">setuptools._vendor.wheel.util</a>
  &#8226;   <a href="#sqlalchemy.util.compat">sqlalchemy.util.compat</a>
@@ -4631,6 +4657,17 @@ imported by:
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#statistics">statistics</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="bitarray"></a>
+  <a target="code" href="" type="text/plain"><tt>bitarray</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.smp">pytds.smp</a>
 
   </div>
 
@@ -4962,6 +4999,8 @@ imported by:
  &#8226;   <a href="#pandas.util._print_versions">pandas.util._print_versions</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pickletools">pickletools</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.base">sqlalchemy.dialects.mssql.base</a>
  &#8226;   <a href="#tokenize">tokenize</a>
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>
@@ -5084,6 +5123,10 @@ imported by:
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
  &#8226;   <a href="#pytz.lazy">pytz.lazy</a>
  &#8226;   <a href="#queue">queue</a>
  &#8226;   <a href="#selectors">selectors</a>
@@ -5358,6 +5401,7 @@ imported by:
  &#8226;   <a href="#pandas.plotting._misc">pandas.plotting._misc</a>
  &#8226;   <a href="#pandas.util._exceptions">pandas.util._exceptions</a>
  &#8226;   <a href="#pdb">pdb</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
  &#8226;   <a href="#setuptools._distutils.command.build_ext">setuptools._distutils.command.build_ext</a>
  &#8226;   <a href="#setuptools._distutils.command.check">setuptools._distutils.command.check</a>
  &#8226;   <a href="#setuptools._distutils.compilers.C.msvc">setuptools._distutils.compilers.C.msvc</a>
@@ -5530,6 +5574,7 @@ imported by:
  &#8226;   <a href="#pandas.io.parsers.base_parser">pandas.io.parsers.base_parser</a>
  &#8226;   <a href="#pandas.io.parsers.python_parser">pandas.io.parsers.python_parser</a>
  &#8226;   <a href="#pandas.io.parsers.readers">pandas.io.parsers.readers</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
  &#8226;   <a href="#setuptools._vendor.importlib_metadata">setuptools._vendor.importlib_metadata</a>
  &#8226;   <a href="#setuptools._vendor.wheel.wheelfile">setuptools._vendor.wheel.wheelfile</a>
 
@@ -5573,6 +5618,8 @@ imported by:
  &#8226;   <a href="#pandas.errors">pandas.errors</a>
  &#8226;   <a href="#pandas.io.clipboard">pandas.io.clipboard</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.sspi">pytds.sspi</a>
  &#8226;   <a href="#setuptools._vendor.packaging._manylinux">setuptools._vendor.packaging._manylinux</a>
  &#8226;   <a href="#setuptools._vendor.wheel.macosx_libfile">setuptools._vendor.wheel.macosx_libfile</a>
  &#8226;   <a href="#setuptools._vendor.wheel.vendored.packaging._manylinux">setuptools._vendor.wheel.vendored.packaging._manylinux</a>
@@ -5919,7 +5966,13 @@ imported by:
  &#8226;   <a href="#pandas.io.sql">pandas.io.sql</a>
  &#8226;   <a href="#pandas.io.stata">pandas.io.stata</a>
  &#8226;   <a href="#pandas.tseries.holiday">pandas.tseries.holiday</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
  &#8226;   <a href="#pytz">pytz</a>
  &#8226;   <a href="#pytz.tzfile">pytz.tzfile</a>
  &#8226;   <a href="#pytz.tzinfo">pytz.tzinfo</a>
@@ -6353,7 +6406,7 @@ imported by:
  &#8226;   <a href="#pandas.core.dtypes.dtypes">pandas.core.dtypes.dtypes</a>
  &#8226;   <a href="#pandas.core.dtypes.missing">pandas.core.dtypes.missing</a>
  &#8226;   <a href="#pandas.io.formats.format">pandas.io.formats.format</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#setuptools.config._validate_pyproject.fastjsonschema_validations">setuptools.config._validate_pyproject.fastjsonschema_validations</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.pyodbc">sqlalchemy.dialects.mssql.pyodbc</a>
  &#8226;   <a href="#sqlalchemy.dialects.oracle.cx_oracle">sqlalchemy.dialects.oracle.cx_oracle</a>
@@ -9595,6 +9648,7 @@ imported by:
  &#8226;   <a href="#pandas._version">pandas._version</a>
  &#8226;   <a href="#pathlib._abc">pathlib._abc</a>
  &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
  &#8226;   <a href="#setuptools._distutils.file_util">setuptools._distutils.file_util</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#site">site</a>
@@ -9922,6 +9976,7 @@ imported by:
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#setuptools">setuptools</a>
  &#8226;   <a href="#setuptools._discovery">setuptools._discovery</a>
@@ -10247,7 +10302,6 @@ imports:
 imported by:
     <a href="#hmac">hmac</a>
  &#8226;   <a href="#openpyxl.chartsheet.protection">openpyxl.chartsheet.protection</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#setuptools._vendor.wheel.wheelfile">setuptools._vendor.wheel.wheelfile</a>
  &#8226;   <a href="#sqlalchemy.util.compat">sqlalchemy.util.compat</a>
@@ -11200,6 +11254,7 @@ imported by:
  &#8226;   <a href="#pickletools">pickletools</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#quopri">quopri</a>
  &#8226;   <a href="#runpy">runpy</a>
  &#8226;   <a href="#setuptools._vendor.backports.tarfile">setuptools._vendor.backports.tarfile</a>
@@ -11321,6 +11376,7 @@ imported by:
  &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#reprlib">reprlib</a>
  &#8226;   <a href="#setuptools._distutils.command.sdist">setuptools._distutils.command.sdist</a>
@@ -11562,6 +11618,17 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="kerberos"></a>
+  <a target="code" href="" type="text/plain"><tt>kerberos</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.login">pytds.login</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="keyword"></a>
   <a target="code" href="///C:/Users/eroni/AppData/Local/Programs/Python/Python313/Lib/keyword.py" type="text/plain"><tt>keyword</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -11574,6 +11641,7 @@ imported by:
  &#8226;   <a href="#pandas._config.config">pandas._config.config</a>
  &#8226;   <a href="#pandas.core.computation.expr">pandas.core.computation.expr</a>
  &#8226;   <a href="#pandas.core.computation.parsing">pandas.core.computation.parsing</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
  &#8226;   <a href="#rlcompleter">rlcompleter</a>
  &#8226;   <a href="#typing_extensions">typing_extensions</a>
 
@@ -11635,7 +11703,6 @@ imported by:
  &#8226;   <a href="#pandas._config.display">pandas._config.display</a>
  &#8226;   <a href="#pandas._config.localization">pandas._config.localization</a>
  &#8226;   <a href="#pandas.util._print_versions">pandas.util._print_versions</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
  &#8226;   <a href="#site">site</a>
  &#8226;   <a href="#subprocess">subprocess</a>
 
@@ -11673,6 +11740,13 @@ imported by:
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.sspi">pytds.sspi</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
  &#8226;   <a href="#setuptools._distutils._log">setuptools._distutils._log</a>
  &#8226;   <a href="#setuptools._distutils.cmd">setuptools._distutils.cmd</a>
  &#8226;   <a href="#setuptools._distutils.dist">setuptools._distutils.dist</a>
@@ -12694,6 +12768,17 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="namedlist"></a>
+  <a target="code" href="" type="text/plain"><tt>namedlist</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.row_strategies">pytds.row_strategies</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="netrc"></a>
   <a target="code" href="///C:/Users/eroni/AppData/Local/Programs/Python/Python313/Lib/netrc.py" type="text/plain"><tt>netrc</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -12722,6 +12807,17 @@ imported by:
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#shutil">shutil</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="ntlm_auth"></a>
+  <a target="code" href="" type="text/plain"><tt>ntlm_auth</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.login">pytds.login</a>
 
   </div>
 
@@ -12810,7 +12906,6 @@ imported by:
  &#8226;   <a href="#pandas.core.arrays.sparse.array">pandas.core.arrays.sparse.array</a>
  &#8226;   <a href="#pandas.core.dtypes.inference">pandas.core.dtypes.inference</a>
  &#8226;   <a href="#pandas.io.html">pandas.io.html</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
  &#8226;   <a href="#setuptools.dist">setuptools.dist</a>
  &#8226;   <a href="#sqlalchemy.dialects.sqlite.base">sqlalchemy.dialects.sqlite.base</a>
  &#8226;   <a href="#sqlalchemy.sql.coercions">sqlalchemy.sql.coercions</a>
@@ -24774,6 +24869,7 @@ imported by:
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
  &#8226;   <a href="#pyi_rth_setuptools.py">pyi_rth_setuptools.py</a>
+ &#8226;   <a href="#pytds">pytds</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#runpy">runpy</a>
  &#8226;   <a href="#setuptools">setuptools</a>
@@ -38326,37 +38422,546 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="pyodbc"></a>
-  <tt>pyodbc</tt> <span class="moduletype"><tt>C:\Users\eroni\PycharmProjects\ExcelClientTigoHelper\.venv\Lib\site-packages\pyodbc.cp313-win_amd64.pyd</tt></span>  <div class="import">
-imports:
-    <a href="#__future__">__future__</a>
- &#8226;   <a href="#_blake2">_blake2</a>
- &#8226;   <a href="#_datetime">_datetime</a>
- &#8226;   <a href="#_decimal">_decimal</a>
- &#8226;   <a href="#_hashlib">_hashlib</a>
- &#8226;   <a href="#_locale">_locale</a>
- &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#decimal">decimal</a>
- &#8226;   <a href="#hashlib">hashlib</a>
- &#8226;   <a href="#locale">locale</a>
- &#8226;   <a href="#numbers">numbers</a>
- &#8226;   <a href="#typing">typing</a>
-
-  </div>
-  <div class="import">
+  <a name="pysqlcipher3"></a>
+  <a target="code" href="" type="text/plain"><tt>pysqlcipher3</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#main.py">main.py</a>
+    <a href="#sqlalchemy.dialects.sqlite.pysqlcipher">sqlalchemy.dialects.sqlite.pysqlcipher</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="pysqlcipher3"></a>
-  <a target="code" href="" type="text/plain"><tt>pysqlcipher3</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
+  <a name="pytds"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/__init__.py" type="text/plain"><tt>pytds</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.lcid">pytds.lcid</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.sspi">pytds.sspi</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#time">time</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#uuid">uuid</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
 imported by:
-    <a href="#sqlalchemy.dialects.sqlite.pysqlcipher">sqlalchemy.dialects.sqlite.pysqlcipher</a>
+    <a href="#app.models.database">app.models.database</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.lcid">pytds.lcid</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.sspi">pytds.sspi</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tds_writer">pytds.tds_writer</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.collate"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/collate.py" type="text/plain"><tt>pytds.collate</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#codecs">codecs</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#struct">struct</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tds_writer">pytds.tds_writer</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.connection"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/connection.py" type="text/plain"><tt>pytds.connection</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#weakref">weakref</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.connection_pool"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/connection_pool.py" type="text/plain"><tt>pytds.connection_pool</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.cursor"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/cursor.py" type="text/plain"><tt>pytds.cursor</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#csv">csv</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.instance_browser_client"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/instance_browser_client.py" type="text/plain"><tt>pytds.instance_browser_client</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.lcid"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/lcid.py" type="text/plain"><tt>pytds.lcid</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#pytds">pytds</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.login"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/login.py" type="text/plain"><tt>pytds.login</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#base64">base64</a>
+ &#8226;   <a href="#ctypes">ctypes</a>
+ &#8226;   <a href="#kerberos">kerberos</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#ntlm_auth">ntlm_auth</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.sspi">pytds.sspi</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#spnego">spnego</a>
+ &#8226;   <a href="#winkerberos">winkerberos</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.row_strategies"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/row_strategies.py" type="text/plain"><tt>pytds.row_strategies</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#collections">collections</a>
+ &#8226;   <a href="#keyword">keyword</a>
+ &#8226;   <a href="#namedlist">namedlist</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#recordtype">recordtype</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.smp"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/smp.py" type="text/plain"><tt>pytds.smp</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#bitarray">bitarray</a>
+ &#8226;   <a href="#errno">errno</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds.tds_socket">pytds.tds_socket</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.sspi"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/sspi.py" type="text/plain"><tt>pytds.sspi</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#ctypes">ctypes</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_base"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_base.py" type="text/plain"><tt>pytds.tds_base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#OpenSSL">OpenSSL</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tds_writer">pytds.tds_writer</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_reader"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_reader.py" type="text/plain"><tt>pytds.tds_reader</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds.tds_session">pytds.tds_session</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_session"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_session.py" type="text/plain"><tt>pytds.tds_session</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#codecs">codecs</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tds_writer">pytds.tds_writer</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_socket"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_socket.py" type="text/plain"><tt>pytds.tds_socket</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_types"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_types.py" type="text/plain"><tt>pytds.tds_types</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decimal">decimal</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#itertools">itertools</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#uuid">uuid</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tds_writer"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tds_writer.py" type="text/plain"><tt>pytds.tds_writer</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#struct">struct</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds.tds_session">pytds.tds_session</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tls"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tls.py" type="text/plain"><tt>pytds.tls</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#OpenSSL">OpenSSL</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_socket">pytds.tds_socket</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.tz"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/tz.py" type="text/plain"><tt>pytds.tz</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#time">time</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pytds.utils"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/pytds/utils.py" type="text/plain"><tt>pytds.utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#time">time</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pytds">pytds</a>
 
   </div>
 
@@ -38749,6 +39354,8 @@ imported by:
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#re._casefix">re._casefix</a>
  &#8226;   <a href="#re._compiler">re._compiler</a>
@@ -38843,6 +39450,8 @@ imported by:
  &#8226;   <a href="#sqlalchemy.util.deprecations">sqlalchemy.util.deprecations</a>
  &#8226;   <a href="#sqlalchemy.util.langhelpers">sqlalchemy.util.langhelpers</a>
  &#8226;   <a href="#sqlalchemy.util.typing">sqlalchemy.util.typing</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
  &#8226;   <a href="#sre_compile">sre_compile</a>
  &#8226;   <a href="#sre_constants">sre_constants</a>
  &#8226;   <a href="#sre_parse">sre_parse</a>
@@ -38961,6 +39570,17 @@ imported by:
  &#8226;   <a href="#rlcompleter">rlcompleter</a>
  &#8226;   <a href="#site">site</a>
  &#8226;   <a href="#sqlite3.__main__">sqlite3.__main__</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="recordtype"></a>
+  <a target="code" href="" type="text/plain"><tt>recordtype</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.row_strategies">pytds.row_strategies</a>
 
   </div>
 
@@ -43564,6 +44184,11 @@ imported by:
  &#8226;   <a href="#multiprocessing.reduction">multiprocessing.reduction</a>
  &#8226;   <a href="#multiprocessing.resource_sharer">multiprocessing.resource_sharer</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
  &#8226;   <a href="#socketserver">socketserver</a>
  &#8226;   <a href="#ssl">ssl</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
@@ -43597,6 +44222,17 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="spnego"></a>
+  <a target="code" href="" type="text/plain"><tt>spnego</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.login">pytds.login</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="sqlalchemy"></a>
   <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/sqlalchemy/__init__.py" type="text/plain"><tt>sqlalchemy</tt></a>
 <span class="moduletype">Package</span>  <div class="import">
@@ -43624,6 +44260,7 @@ imports:
  &#8226;   <a href="#sqlalchemy.sql.expression">sqlalchemy.sql.expression</a>
  &#8226;   <a href="#sqlalchemy.types">sqlalchemy.types</a>
  &#8226;   <a href="#sqlalchemy.util">sqlalchemy.util</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
@@ -43790,6 +44427,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.util.langhelpers">sqlalchemy.util.langhelpers</a>
  &#8226;   <a href="#sqlalchemy.util.preloaded">sqlalchemy.util.preloaded</a>
  &#8226;   <a href="#sqlalchemy.util.topological">sqlalchemy.util.topological</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
 
   </div>
 
@@ -43811,6 +44449,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.connectors.aioodbc">sqlalchemy.connectors.aioodbc</a>
  &#8226;   <a href="#sqlalchemy.connectors.asyncio">sqlalchemy.connectors.asyncio</a>
  &#8226;   <a href="#sqlalchemy.connectors.pyodbc">sqlalchemy.connectors.pyodbc</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
 
   </div>
 
@@ -44028,6 +44667,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.dialects.sqlite">sqlalchemy.dialects.sqlite</a>
  &#8226;   <a href="#sqlalchemy.engine.url">sqlalchemy.engine.url</a>
  &#8226;   <a href="#sqlalchemy.util.preloaded">sqlalchemy.util.preloaded</a>
+ &#8226;   <a href="#sqlalchemy_pytds">sqlalchemy_pytds</a>
 
   </div>
 
@@ -44073,8 +44713,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#main.py">main.py</a>
- &#8226;   <a href="#sqlalchemy">sqlalchemy</a>
+    <a href="#sqlalchemy">sqlalchemy</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql">sqlalchemy.dialects.mssql</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.aioodbc">sqlalchemy.dialects.mssql.aioodbc</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.base">sqlalchemy.dialects.mssql.base</a>
@@ -44082,6 +44721,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.dialects.mssql.json">sqlalchemy.dialects.mssql.json</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.pymssql">sqlalchemy.dialects.mssql.pymssql</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.pyodbc">sqlalchemy.dialects.mssql.pyodbc</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
 
   </div>
 
@@ -44150,6 +44790,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.dialects.mssql.information_schema">sqlalchemy.dialects.mssql.information_schema</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.pymssql">sqlalchemy.dialects.mssql.pymssql</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.pyodbc">sqlalchemy.dialects.mssql.pyodbc</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
 
   </div>
 
@@ -46189,6 +46830,7 @@ imported by:
  &#8226;   <a href="#sqlalchemy.sql.sqltypes">sqlalchemy.sql.sqltypes</a>
  &#8226;   <a href="#sqlalchemy.sql.type_api">sqlalchemy.sql.type_api</a>
  &#8226;   <a href="#sqlalchemy.sql.util">sqlalchemy.sql.util</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
 
   </div>
 
@@ -51199,6 +51841,8 @@ imported by:
  &#8226;   <a href="#sqlalchemy.util.queue">sqlalchemy.util.queue</a>
  &#8226;   <a href="#sqlalchemy.util.topological">sqlalchemy.util.topological</a>
  &#8226;   <a href="#sqlalchemy.util.typing">sqlalchemy.util.typing</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
 
   </div>
 
@@ -51661,6 +52305,73 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="sqlalchemy_pytds"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/sqlalchemy_pytds/__init__.py" type="text/plain"><tt>sqlalchemy_pytds</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#sqlalchemy.dialects">sqlalchemy.dialects</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#main.py">main.py</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+ &#8226;   <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="sqlalchemy_pytds.connector"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/sqlalchemy_pytds/connector.py" type="text/plain"><tt>sqlalchemy_pytds.connector</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.login">pytds.login</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#sqlalchemy.connectors">sqlalchemy.connectors</a>
+ &#8226;   <a href="#sqlalchemy.util">sqlalchemy.util</a>
+ &#8226;   <a href="#sqlalchemy_pytds">sqlalchemy_pytds</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#sqlalchemy_pytds.dialect">sqlalchemy_pytds.dialect</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="sqlalchemy_pytds.dialect"></a>
+  <a target="code" href="///C:/Users/eroni/PycharmProjects/ExcelClientTigoHelper/.venv/Lib/site-packages/sqlalchemy_pytds/dialect.py" type="text/plain"><tt>sqlalchemy_pytds.dialect</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#sqlalchemy">sqlalchemy</a>
+ &#8226;   <a href="#sqlalchemy.dialects.mssql">sqlalchemy.dialects.mssql</a>
+ &#8226;   <a href="#sqlalchemy.dialects.mssql.base">sqlalchemy.dialects.mssql.base</a>
+ &#8226;   <a href="#sqlalchemy.engine.interfaces">sqlalchemy.engine.interfaces</a>
+ &#8226;   <a href="#sqlalchemy.util">sqlalchemy.util</a>
+ &#8226;   <a href="#sqlalchemy_pytds">sqlalchemy_pytds</a>
+ &#8226;   <a href="#sqlalchemy_pytds.connector">sqlalchemy_pytds.connector</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#sqlalchemy">sqlalchemy</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="sqlcipher3"></a>
   <a target="code" href="" type="text/plain"><tt>sqlcipher3</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
@@ -51986,6 +52697,13 @@ imported by:
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pickletools">pickletools</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#pytds.collate">pytds.collate</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tds_writer">pytds.tds_writer</a>
  &#8226;   <a href="#pytz.tzfile">pytz.tzfile</a>
  &#8226;   <a href="#setuptools._vendor.backports.tarfile">setuptools._vendor.backports.tarfile</a>
  &#8226;   <a href="#setuptools._vendor.packaging._elffile">setuptools._vendor.packaging._elffile</a>
@@ -52094,6 +52812,7 @@ imported by:
  &#8226;   <a href="#_pyrepl.windows_console">_pyrepl.windows_console</a>
  &#8226;   <a href="#_sitebuiltins">_sitebuiltins</a>
  &#8226;   <a href="#app.controllers.task_controller">app.controllers.task_controller</a>
+ &#8226;   <a href="#app.models.database">app.models.database</a>
  &#8226;   <a href="#app.services.clients_by_node_service">app.services.clients_by_node_service</a>
  &#8226;   <a href="#argparse">argparse</a>
  &#8226;   <a href="#ast">ast</a>
@@ -52617,6 +53336,7 @@ imported by:
  &#8226;   <a href="#numpy.random.bit_generator">numpy.random.bit_generator</a>
  &#8226;   <a href="#numpy.testing._private.utils">numpy.testing._private.utils</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
  &#8226;   <a href="#pytz.lazy">pytz.lazy</a>
  &#8226;   <a href="#queue">queue</a>
  &#8226;   <a href="#socketserver">socketserver</a>
@@ -52689,6 +53409,9 @@ imported by:
  &#8226;   <a href="#pandas._testing.contexts">pandas._testing.contexts</a>
  &#8226;   <a href="#pandas.io.clipboard">pandas.io.clipboard</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tz">pytds.tz</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
  &#8226;   <a href="#queue">queue</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#setuptools._vendor.backports.tarfile">setuptools._vendor.backports.tarfile</a>
@@ -53395,7 +54118,19 @@ imported by:
  &#8226;   <a href="#pandas.util._print_versions">pandas.util._print_versions</a>
  &#8226;   <a href="#pandas.util._validators">pandas.util._validators</a>
  &#8226;   <a href="#pandas.util.version">pandas.util.version</a>
- &#8226;   <a href="#pyodbc">pyodbc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.connection_pool">pytds.connection_pool</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.instance_browser_client">pytds.instance_browser_client</a>
+ &#8226;   <a href="#pytds.row_strategies">pytds.row_strategies</a>
+ &#8226;   <a href="#pytds.smp">pytds.smp</a>
+ &#8226;   <a href="#pytds.tds_base">pytds.tds_base</a>
+ &#8226;   <a href="#pytds.tds_reader">pytds.tds_reader</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
+ &#8226;   <a href="#pytds.tls">pytds.tls</a>
+ &#8226;   <a href="#pytds.utils">pytds.utils</a>
  &#8226;   <a href="#setuptools">setuptools</a>
  &#8226;   <a href="#setuptools._distutils._modified">setuptools._distutils._modified</a>
  &#8226;   <a href="#setuptools._distutils.archive_util">setuptools._distutils.archive_util</a>
@@ -54175,6 +54910,8 @@ imported by:
  &#8226;   <a href="#pandas._testing.contexts">pandas._testing.contexts</a>
  &#8226;   <a href="#pandas.core.reshape.merge">pandas.core.reshape.merge</a>
  &#8226;   <a href="#pandas.io.formats.style_render">pandas.io.formats.style_render</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.tds_types">pytds.tds_types</a>
  &#8226;   <a href="#sqlalchemy.dialects.mssql.base">sqlalchemy.dialects.mssql.base</a>
  &#8226;   <a href="#sqlalchemy.dialects.mysql.mariadbconnector">sqlalchemy.dialects.mysql.mariadbconnector</a>
  &#8226;   <a href="#sqlalchemy.dialects.postgresql.types">sqlalchemy.dialects.postgresql.types</a>
@@ -54418,6 +55155,10 @@ imported by:
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pytds">pytds</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
+ &#8226;   <a href="#pytds.cursor">pytds.cursor</a>
+ &#8226;   <a href="#pytds.tds_session">pytds.tds_session</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#re._parser">re._parser</a>
@@ -54512,6 +55253,7 @@ imported by:
  &#8226;   <a href="#pandas.core.generic">pandas.core.generic</a>
  &#8226;   <a href="#pandas.core.internals.blocks">pandas.core.internals.blocks</a>
  &#8226;   <a href="#pandas.core.series">pandas.core.series</a>
+ &#8226;   <a href="#pytds.connection">pytds.connection</a>
  &#8226;   <a href="#sqlalchemy.engine.default">sqlalchemy.engine.default</a>
  &#8226;   <a href="#sqlalchemy.event.attr">sqlalchemy.event.attr</a>
  &#8226;   <a href="#sqlalchemy.event.base">sqlalchemy.event.base</a>
@@ -54593,6 +55335,17 @@ imported by:
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
     <a href="#numpy.testing._private.utils">numpy.testing._private.utils</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="winkerberos"></a>
+  <a target="code" href="" type="text/plain"><tt>winkerberos</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
+imported by:
+    <a href="#pytds.login">pytds.login</a>
 
   </div>
 

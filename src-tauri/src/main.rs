@@ -1,17 +1,15 @@
 // src-tauri/src/main.rs
-
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri_plugin_shell::{process::CommandEvent, ShellExt};
 
 async fn run_python_command(app: tauri::AppHandle, args: Vec<&str>) -> Result<String, String> {
-    // Detecta entorno: debug = desarrollo, release = producción
-    #[cfg(debug_assertions)]
-    let mut command = app.shell().command("python").arg("python/main.py");
-    #[cfg(not(debug_assertions))]
-    let mut command = app.shell().command("python/python_backend.exe");
+    // En la versión final, siempre usaremos el ejecutable empaquetado.
+    let command_name = "python/python_backend.exe";
 
-    let (mut rx, _child) = command
+    // Hemos eliminado la variable 'mut' innecesaria.
+    let (mut rx, _child) = app.shell()
+        .command(command_name)
         .args(args)
         .spawn()
         .map_err(|e| e.to_string())?;

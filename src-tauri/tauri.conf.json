@@ -33,11 +33,6 @@
     ],
     "resources": [
       "python/**/*"
-    ],
-    "windows": {
-      "nsis": {
-        "script": "extra-installer.nsh"
-      }
-    }
+    ]
   }
 }
