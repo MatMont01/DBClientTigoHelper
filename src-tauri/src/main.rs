@@ -5,9 +5,13 @@
 use tauri_plugin_shell::{process::CommandEvent, ShellExt};
 
 async fn run_python_command(app: tauri::AppHandle, args: Vec<&str>) -> Result<String, String> {
-    let (mut rx, _child) = app.shell()
-        .command("python")
-        .arg("python/main.py")
+    // Detecta entorno: debug = desarrollo, release = producción
+    #[cfg(debug_assertions)]
+    let mut command = app.shell().command("python").arg("python/main.py");
+    #[cfg(not(debug_assertions))]
+    let mut command = app.shell().command("python/python_backend.exe");
+
+    let (mut rx, _child) = command
         .args(args)
         .spawn()
         .map_err(|e| e.to_string())?;
@@ -56,7 +60,6 @@ async fn export_task(app: tauri::AppHandle, output_path: String) -> Result<Strin
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
-        // --- ¡ESTA ES LA LÍNEA QUE FALTABA! ---
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![preview_task, export_task])
         .run(tauri::generate_context!())

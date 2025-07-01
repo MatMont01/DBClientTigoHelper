@@ -3,22 +3,19 @@
 import sys
 import os
 
-# --- INICIO DEL BLOQUE DE COMPATIBILIDAD PARA PYINSTALLER ---
-# Este código asegura que el script encuentre la carpeta 'app'
-# tanto en el IDE como cuando está empaquetado en un .exe.
+# --- INICIO DEL BLOQUE DE COMPATIBILIDAD PARA PYINSTALLER 6.x+ ---
 if getattr(sys, 'frozen', False):
-    # Si se ejecuta como un .exe (empaquetado)
     application_path = os.path.dirname(sys.executable)
+    internal_path = os.path.join(application_path, '_internal')
+    # Añade _internal al sys.path si existe
+    if os.path.isdir(internal_path):
+        sys.path.insert(0, internal_path)
+    sys.path.insert(0, application_path)
 else:
-    # Si se ejecuta como un script normal (.py)
     application_path = os.path.dirname(os.path.abspath(__file__))
-
-# Añadimos la ruta principal a los paths de Python
-sys.path.insert(0, application_path)
+    sys.path.insert(0, application_path)
 # --- FIN DEL BLOQUE DE COMPATIBILIDAD ---
 
-
-# Ahora las importaciones relativas funcionarán sin problemas
 import json
 import argparse
 from app.controllers.task_controller import TaskController
