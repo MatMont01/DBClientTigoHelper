@@ -1,18 +1,31 @@
 // src-tauri/src/main.rs
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+// 1. LIMPIEZA DE IMPORTACIONES: Se eliminó 'Manager' que no se usaba.
+use tauri::AppHandle;
 use tauri_plugin_shell::{process::CommandEvent, ShellExt};
 
-async fn run_python_command(app: tauri::AppHandle, args: Vec<&str>) -> Result<String, String> {
-    // En la versión final, siempre usaremos el ejecutable empaquetado.
+// Función centralizada para ejecutar cualquier comando de Python
+async fn run_python_command(app: AppHandle, args: Vec<String>) -> Result<String, String> {
+    // Lógica para usar el ejecutable en producción o el script en desarrollo
+    #[cfg(not(debug_assertions))]
     let command_name = "python/python_backend.exe";
+    #[cfg(debug_assertions)]
+    let command_name = "python";
 
-    // Hemos eliminado la variable 'mut' innecesaria.
-    let (mut rx, _child) = app.shell()
-        .command(command_name)
-        .args(args)
+    println!("Ejecutando comando: {} con args: {:?}", command_name, &args);
+
+    let mut command_builder = app.shell().command(command_name);
+
+    #[cfg(debug_assertions)]
+    {
+        command_builder = command_builder.arg("python/main.py");
+    }
+
+    let (mut rx, _child) = command_builder
+        .args(&args)
         .spawn()
-        .map_err(|e| e.to_string())?;
+        .map_err(|e| format!("Fallo al ejecutar el script: {}", e))?;
 
     let mut stdout_buffer = String::new();
     let mut stderr_buffer = String::new();
@@ -20,39 +33,50 @@ async fn run_python_command(app: tauri::AppHandle, args: Vec<&str>) -> Result<St
     while let Some(event) = rx.recv().await {
         match event {
             CommandEvent::Stdout(bytes) => {
-                let line = String::from_utf8_lossy(&bytes);
-                print!("PY_STDOUT: {}", line);
-                stdout_buffer.push_str(&line);
+                stdout_buffer.push_str(&String::from_utf8_lossy(&bytes));
             }
             CommandEvent::Stderr(bytes) => {
                 let line = String::from_utf8_lossy(&bytes);
-                eprint!("PY_STDERR: {}", line);
+                eprintln!("PY_STDERR: {}", line);
                 stderr_buffer.push_str(&line);
             }
             CommandEvent::Terminated(payload) => {
                 if payload.code != Some(0) {
-                    return Err(format!("El script de Python falló con código {:?}. Detalles:\n{}", payload.code, stderr_buffer));
+                    return Err(format!("El script de Python falló con código {:?}. Detalles: {}", payload.code, stderr_buffer));
                 }
             }
             _ => (),
         }
     }
 
-    if stdout_buffer.is_empty() && !stderr_buffer.is_empty() {
+    if !stderr_buffer.is_empty() && stdout_buffer.is_empty() {
         return Err(stderr_buffer);
     }
 
     Ok(stdout_buffer)
 }
 
+// --- 2. COMANDO PREVIEW SIMPLIFICADO ---
+// Se eliminó b2b_filter de la firma y de los argumentos
 #[tauri::command]
-async fn preview_task(app: tauri::AppHandle) -> Result<String, String> {
-    run_python_command(app, vec!["--mode", "preview"]).await
+async fn preview_task(app: tauri::AppHandle, cronograma_path: String) -> Result<String, String> {
+    let args = vec![
+        "--mode".to_string(), "preview".to_string(),
+        "--cronograma-path".to_string(), cronograma_path,
+    ];
+    run_python_command(app, args).await
 }
 
+// --- 3. COMANDO EXPORT SIMPLIFICADO ---
+// Se eliminó b2b_filter de la firma y de los argumentos
 #[tauri::command]
-async fn export_task(app: tauri::AppHandle, output_path: String) -> Result<String, String> {
-    run_python_command(app, vec!["--mode", "export", "--output-path", &output_path]).await
+async fn export_task(app: tauri::AppHandle, cronograma_path: String, output_path: String) -> Result<String, String> {
+    let args = vec![
+        "--mode".to_string(), "export".to_string(),
+        "--cronograma-path".to_string(), cronograma_path,
+        "--output-path".to_string(), output_path,
+    ];
+    run_python_command(app, args).await
 }
 
 fn main() {

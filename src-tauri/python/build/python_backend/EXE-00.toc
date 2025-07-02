@@ -70,7 +70,7 @@
  [],
  False,
  False,
- 1751379656,
+ 1751399907,
  [('runw.exe',
    'C:\\Users\\eroni\\PycharmProjects\\ExcelClientTigoHelper\\.venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
    'EXECUTABLE')],

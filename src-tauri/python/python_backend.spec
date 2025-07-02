@@ -8,15 +8,15 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        ('app', 'app') # Solo necesitamos empaquetar nuestra carpeta 'app'
+        ('app', 'app'),
+        ('driver', 'driver') # Asegúrate de que esta carpeta exista en 'src-tauri/python/driver'
     ],
     hiddenimports=[
         'sqlalchemy',
         'pandas',
         'openpyxl',
-        'sqlalchemy_pytds',
+        'pytds', # Usamos pytds como acordamos
         'pandas._libs.tslibs.base'
-        # Ya no necesitamos pyodbc, sqlalchemy.dialects.mssql, ni la carpeta driver.
     ],
     hookspath=[],
     hooksconfig={},
@@ -41,6 +41,7 @@ exe = EXE(
     upx=True,
     runtime_tmpdir=None,
     console=False,
+    windowed=True, # Usamos windowed aquí
     disable_windowed_traceback=False,
     target_arch=None,
     codesign_identity=None,
