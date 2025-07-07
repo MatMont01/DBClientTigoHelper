@@ -2,71 +2,90 @@
 import sys
 import pandas as pd
 from sqlalchemy.orm import Session
-from ..models.clients_by_node_model import CacheCuboCarteras
+# 1. Importamos los dos modelos que ahora necesitamos
+from ..models.clients_by_node_model import CacheCuboCarteras, ClientesIp
 import re
 
 
 class ClientsByNodeService:
     def _normalize_nodo(self, nodo_text: str) -> str:
-        """
-        Función de limpieza final y robusta.
-        1. Se asegura de que sea un string.
-        2. Elimina la palabra "NODO" y cualquier caracter no alfanumérico al principio.
-        3. Convierte a mayúsculas y quita espacios en blanco.
-        """
+        """Limpia y estandariza los nombres de los nodos."""
         if not isinstance(nodo_text, str):
             return ''
-        # Elimina prefijos como "NODO " y deja solo el identificador
-        cleaned_text = re.sub(r'^[A-Z\s_]*', '', nodo_text.upper().strip())
-        return cleaned_text
+        return nodo_text.upper().replace('NODO', '').strip()
 
-    def _get_processed_data(self, db_session: Session, cronograma_excel_path: str) -> pd.DataFrame:
-        print("--- MODO DEPURACIÓN FINAL ---", file=sys.stderr)
+    def _get_processed_data(self, db_session: Session, cronograma_excel_path: str, ip_filter: str) -> pd.DataFrame:
+        """
+        Función central que lee, consulta, une, filtra y cruza todos los datos.
+        """
+        print("Servicio: Iniciando procesamiento.", file=sys.stderr)
 
         # 1. Leer y normalizar el cronograma
         try:
             df_cronograma = pd.read_excel(cronograma_excel_path, sheet_name=0)
-            df_cronograma.dropna(subset=['NODO_N', 'FECHA TRABAJO'], inplace=True)
-            df_cronograma['NODO_NORMALIZADO'] = df_cronograma['NODO_N'].apply(self._normalize_nodo)
-            df_cronograma['FECHA TRABAJO'] = pd.to_datetime(df_cronograma['FECHA TRABAJO'], errors='coerce')
-            df_cronograma.dropna(subset=['FECHA TRABAJO', 'NODO_NORMALIZADO'], inplace=True)
+            cronograma_node_column = 'NODO_N'
+            fecha_column = 'FECHA TRABAJO'
 
-            nodos_excel = set(df_cronograma['NODO_NORMALIZADO'].unique())
-            print(f"\n--- [DEBUG] Nodos únicos y normalizados del EXCEL ({len(nodos_excel)}): ---", file=sys.stderr)
-            print(sorted(list(nodos_excel)), file=sys.stderr)
+            if cronograma_node_column not in df_cronograma.columns or fecha_column not in df_cronograma.columns:
+                raise ValueError(
+                    f"Columnas requeridas ('{cronograma_node_column}', '{fecha_column}') no encontradas en el Excel.")
 
+            df_cronograma['NODO_NORMALIZADO'] = df_cronograma[cronograma_node_column].apply(self._normalize_nodo)
+            df_cronograma[fecha_column] = pd.to_datetime(df_cronograma[fecha_column], errors='coerce')
+            df_cronograma.dropna(subset=[fecha_column, 'NODO_NORMALIZADO'], inplace=True)
         except Exception as e:
-            raise ValueError(f"Error al leer el cronograma: {e}")
+            raise ValueError(f"No se pudo leer el archivo de Cronograma: {e}")
 
-        # 2. Consultar y procesar clientes de la BD
-        query = db_session.query(CacheCuboCarteras)
-        df_clientes_db = pd.read_sql(query.statement, db_session.bind)
-        df_clientes_db.dropna(subset=['NODO'], inplace=True)
-        df_clientes_db['NODO_NORMALIZADO'] = df_clientes_db['NODO'].apply(self._normalize_nodo)
+        # 2. Consultar las dos vistas de la base de datos
+        print("Servicio: Consultando datos de clientes y de IP...", file=sys.stderr)
+        query_clientes = db_session.query(CacheCuboCarteras)
+        df_clientes_db = pd.read_sql(query_clientes.statement, db_session.bind)
 
-        nodos_db = set(df_clientes_db['NODO_NORMALIZADO'].unique())
-        print(f"\n--- [DEBUG] Nodos únicos y normalizados de la BASE DE DATOS ({len(nodos_db)}): ---", file=sys.stderr)
-        print(sorted(list(nodos_db)), file=sys.stderr)
+        query_ip = db_session.query(ClientesIp)
+        df_ip_flags = pd.read_sql(query_ip.statement, db_session.bind)
 
-        # 3. --- ¡DIAGNÓSTICO FINAL! ---
-        #    Calculamos y mostramos la intersección entre las dos listas de nodos.
-        nodos_en_comun = sorted(list(nodos_excel.intersection(nodos_db)))
-        print(f"\n--- [DIAGNÓSTICO] INTERSECCIÓN DE NODOS ENCONTRADA ({len(nodos_en_comun)}): ---", file=sys.stderr)
-        print(nodos_en_comun, file=sys.stderr)
-        print("\n--------------------------------------------------\n", file=sys.stderr)
+        # 3. Unir la información de clientes con la bandera de IP
+        # Usamos un LEFT JOIN para mantener a todos los clientes, incluso si no están en la lista de IP.
+        df_clientes_completo = pd.merge(
+            left=df_clientes_db,
+            right=df_ip_flags,
+            left_on='NRO_CUENTA',
+            right_on='CLIENTENRO',
+            how='left'
+        )
+        # Llenamos los valores NaN en 'BANDERA_IP' para clientes que no se encontraron, asumiendo que no tienen IP.
+        df_clientes_completo['BANDERA_IP'].fillna('NO TIENE', inplace=True)
 
-        # 4. Cruzar datos
-        df_merged = pd.merge(left=df_clientes_db, right=df_cronograma, on='NODO_NORMALIZADO', how='inner')
+        # 4. Aplicar el nuevo filtro de IP Pública
+        if ip_filter == 'with_ip':
+            df_clientes_filtrados = df_clientes_completo[df_clientes_completo['BANDERA_IP'] == 'TIENE'].copy()
+            print("Servicio: Aplicando filtro 'Con IP Pública'.", file=sys.stderr)
+        elif ip_filter == 'without_ip':
+            df_clientes_filtrados = df_clientes_completo[df_clientes_completo['BANDERA_IP'] != 'TIENE'].copy()
+            print("Servicio: Aplicando filtro 'Sin IP Pública'.", file=sys.stderr)
+        else:  # 'all'
+            df_clientes_filtrados = df_clientes_completo.copy()
+            print("Servicio: Mostrando todos los clientes (Con y Sin IP).", file=sys.stderr)
+
+        # 5. Cruzar con el cronograma
+        df_clientes_filtrados['NODO_NORMALIZADO'] = df_clientes_filtrados['NODO'].apply(self._normalize_nodo)
+        df_merged = pd.merge(
+            left=df_clientes_filtrados,
+            right=df_cronograma,
+            on='NODO_NORMALIZADO',
+            how='inner'
+        )
 
         if df_merged.empty:
-            raise ValueError("No se encontraron clientes que coincidan. Revisa las listas de nodos en la consola.")
+            raise ValueError(
+                "No se encontraron clientes que coincidan con los nodos del cronograma y el filtro de IP aplicado.")
 
+        print(f"Servicio: ¡Éxito! Se encontraron {len(df_merged)} clientes afectados.", file=sys.stderr)
         return df_merged
 
-    # El resto de los métodos (get_preview, export_to_excel) se mantienen igual,
-    # ya que dependen de la lógica de _get_processed_data que hemos mejorado.
-    def get_preview(self, db_session: Session, cronograma_path: str, max_rows: int = 20) -> list:
-        df_merged = self._get_processed_data(db_session, cronograma_path)
+    # Los métodos get_preview y export_to_excel ahora recibirán el nuevo parámetro ip_filter
+    def get_preview(self, db_session: Session, cronograma_path: str, ip_filter: str, max_rows: int = 20) -> list:
+        df_merged = self._get_processed_data(db_session, cronograma_path, ip_filter)
         final_columns = {
             'NRO_CUENTA': 'NRO_CUENTA', 'NOMBRE_CLIENTE': 'CLIENTE_NOMBRE_COMPLETO',
             'NODO': 'ZONA_GRUPO', 'EJECUTIVO_CORPORATE': 'EJECUTIVO_CORPORATE',
@@ -77,8 +96,8 @@ class ClientsByNodeService:
         df_final = df_merged[existing_columns].rename(columns=final_columns)
         return df_final.head(max_rows).to_dict(orient='records')
 
-    def export_to_excel(self, db_session: Session, cronograma_path: str, output_path: str):
-        df_processed = self._get_processed_data(db_session, cronograma_path)
+    def export_to_excel(self, db_session: Session, cronograma_path: str, ip_filter: str, output_path: str):
+        df_processed = self._get_processed_data(db_session, cronograma_path, ip_filter)
         with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
             grouped = df_processed.groupby(df_processed['FECHA TRABAJO'].dt.date)
             final_columns_export = {
